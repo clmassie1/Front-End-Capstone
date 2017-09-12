@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>capstone</title>
+    <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+   <div ng-app="capstone">
+        <div ng-include="'/partials/partialNav.html'"></div>
+        <div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 main-container">
+                    <!-- where the magic happens -->
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+    <!-- end ng-app -->
+    </div> 
+
+    <script type="text/javascript" src="./lib/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./lib/node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="./lib/node_modules/firebase/firebase.js"></script>
+
+    <!-- app -->
+    <script src="app/app.js"></script>
+    <!--<script src="app/values/fb-creds.js"></script>-->
+
+    <!-- factories -->
+    <script src="app/factories/factoryHome.js"></script>
+    <script src="app/factories/factoryLibrary.js"></script>
+    <script src="app/factories/factoryFriends.js"></script>
+    
+    <!-- controllers -->
+    <script src="app/controllers/controllerFriends.js"></script>
+    <script src="app/controllers/controllerLibrary.js"></script>
+    <script src="app/controllers/controllerHome.js"></script>
+    <script src="app/controllers/controllerNav.js"></script>
+    <!--<script src="app/controllers/control-navbar.js"></script>
+    <script src="app/controllers/control-user.js"></script>-->
+
+
+
+</body> 
+</html>
