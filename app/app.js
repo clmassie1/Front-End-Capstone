@@ -8,29 +8,37 @@ app.config(function($routeProvider){
       templateUrl: '/partials/partialHome.html',
       controller: 'controllerHome'
       
-    }).
-    otherwise('/');
-    
-});
-
-app.config(function($routeProvider){
-    $routeProvider.
-    when('/library', {
+    }).when('/library', {
       templateUrl: '/partials/partialLibrary.html',
       controller: 'controllerLibrary'
       
-    }).
-    otherwise('/');
-    
-});
-
-app.config(function($routeProvider){
-    $routeProvider.
-    when('/Friends', {
+    }).when('/Friends', {
       templateUrl: '/partials/partialFriends.html',
       controller: 'controllerFriends'
       
-    }).
-    otherwise('/');
+    })
+      .otherwise('/');
     
 });
+
+// app.config(function($routeProvider){
+//     $routeProvider.
+//     when('/library', {
+//       templateUrl: '/partials/partialLibrary.html',
+//       controller: 'controllerLibrary'
+      
+//     }).
+//     otherwise('/');
+    
+// });
+
+// app.config(function($routeProvider){
+//     $routeProvider.
+//     when('/Friends', {
+//       templateUrl: '/partials/partialFriends.html',
+//       controller: 'controllerFriends'
+      
+//     }).
+//     otherwise('/');
+    
+// });

@@ -1,1 +1,14 @@
 <h1>Library</h1>
+
+
+<div ng-repeat="book in books">
+    <div class="panel panel-default" ng-hide="thingy.isCompleted">
+        <div class="panel-body">
+            <div class="col-xs-12"><h3>{{ book.title }}</h3><hr> </div>
+            <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
+            <div  class="col-xs-8">{{book.authors}}</div>
+            <div id="div2" class="col-xs-8">{{book.description}}</div>
+            <div id="div1" class="col-xs-8"><button ng-click="deleteBook(book.id)">remove Book</button></div>
+        </div>
+    </div>
+</div>
