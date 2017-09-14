@@ -1,7 +1,10 @@
-
-
-<div ng-repeat="book in books | filter: searchText.search">
-    <div class="panel panel-default" ng-hide="thingy.isCompleted">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search Book"ng-model="searchTerm">
+      </div>
+      <button ng-click="searchBook()" type="submit" class="btn btn-default">Submit</button>
+<h1>books</h1>
+<div  ng-repeat="book in books" >
+    <div class="panel panel-default" >
         <div class="panel-body">
             <div class="col-xs-12"><h3>{{ book.title }}</h3><hr> </div>
             <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
@@ -11,13 +14,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    #div1 {
-    display: inline-block;
-}
-
-#div2 {
-    display: inline-block;
-}
-</style>
+        

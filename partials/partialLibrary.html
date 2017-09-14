@@ -1,7 +1,7 @@
 <h1>Library</h1>
 
 
-<div ng-repeat="book in books">
+<div ng-repeat="book in books" ng-controller="controllerLibrary">
     <div class="panel panel-default" ng-hide="thingy.isCompleted">
         <div class="panel-body">
             <div class="col-xs-12"><h3>{{ book.title }}</h3><hr> </div>

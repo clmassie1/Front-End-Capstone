@@ -5,10 +5,8 @@
     provide the basic interactions with api
  
 */
-
 app.factory("factoryHome", function($q, $http, FBCreds){
 
-//set buildBookObj equal to the 
 
 
 let Url = FBCreds.databaseURL;
@@ -32,13 +30,20 @@ let Url = FBCreds.databaseURL;
               return BookObjs;
               
     };
-
+  let searchR = [];
+    // let search = "";
+    
+    
+// call api for all the books
     console.log('factoryHome has loaded');
-    const getBooks = function(bookArray){
+    const getBooks = function(search){
+        console.log('searchg', search);
+        
         return $q((resolve, reject) =>{
-            $http.get(`https://www.googleapis.com/books/v1/volumes?q=search+terms:gatsby`)
+            $http.get(`https://www.googleapis.com/books/v1/volumes?q=search+terms:${search}`)
             .then((bookArray) => {
-                resolve(buildBookObjs(bookArray.data.items));
+                searchR = buildBookObjs(bookArray.data.items);
+                resolve(searchR);
             })
             .catch((error) => {
                 reject(error);
@@ -46,7 +51,7 @@ let Url = FBCreds.databaseURL;
         });
     };
 
-
+  
 
 const addBook = function(obj){
     console.log('obj', obj);
@@ -69,5 +74,5 @@ const addBook = function(obj){
     };
 
     
-    return { getBooks, addBook};
+    return { getBooks, addBook, buildBookObjs};
 });
