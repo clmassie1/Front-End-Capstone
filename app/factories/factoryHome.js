@@ -5,22 +5,26 @@
     provide the basic interactions with api
  
 */
-app.factory("factoryHome", function($q, $http, FBCreds){
-
+app.factory("factoryHome", function($q, $http, FBCreds, factoryUser){
 
 
 let Url = FBCreds.databaseURL;
 
+  const user = factoryUser.getCurrentUser();
+
+
     const buildBookObjs = function(data){
 
         let BookObjs =  data.map(function(currentBook){
-            // console.log('currentt book', currentBook);
+            console.log('currentt book', currentBook);
+            
             let book =  {
                 id: currentBook.id,
                 authors: currentBook.volumeInfo.authors,
                 image: currentBook.volumeInfo.imageLinks.thumbnail,
                 title: currentBook.volumeInfo.title,
-                description: currentBook.volumeInfo.description
+                description: currentBook.volumeInfo.description,
+                Cm: ""
             };
             return book;
         });
@@ -30,6 +34,17 @@ let Url = FBCreds.databaseURL;
               return BookObjs;
               
     };
+
+
+
+       const addComment = function(Cm) {
+
+          let newj = JSON.stringify(Cm);
+                $http.patch(`https://capstone-2cb7b.firebaseio.com/books.json`, Cm);
+         
+        };
+
+
   let searchR = [];
     // let search = "";
     
@@ -43,7 +58,8 @@ let Url = FBCreds.databaseURL;
             $http.get(`https://www.googleapis.com/books/v1/volumes?q=search+terms:${search}`)
             .then((bookArray) => {
                 searchR = buildBookObjs(bookArray.data.items);
-                resolve(searchR);
+                console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                  resolve(searchR);
             })
             .catch((error) => {
                 reject(error);
@@ -62,7 +78,8 @@ const addBook = function(obj){
           authors: obj.authors,
           image: obj.image,
           id: obj.id,
-          description: obj.description
+          description: obj.description,
+          uid: user
         };
           
 
@@ -72,6 +89,8 @@ const addBook = function(obj){
             .then(data => data)
             .catch();
     };
+
+    
 
     
     return { getBooks, addBook, buildBookObjs};

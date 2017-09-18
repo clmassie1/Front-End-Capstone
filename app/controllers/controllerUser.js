@@ -6,19 +6,24 @@
  
 */
 
-app.controller('controllerUser', function($scope, factoryUser, $location) {
+app.controller('controllerUser', function($scope, factoryUser, $window, $location) {
         console.log('controllerUser has loaded');
 
-//        $scope.searchTerm = "";
 
-// $scope.searchBook = function(){
-//     console.log('search book', $scope.searchTerm);
-//     factoryHome.getBooks($scope.searchTerm)
-//     .then((resultes) => {
-//      $scope.books = resultes;
-//       console.log('books from search', $scope.books);
-      
-//  });
-// };
+    $scope.logOut = function(){
+        console.log('Logged You Out Son!!!!!',  factoryUser.logOut());
+        factoryUser.logOut();
+    };
 
-    });
+$scope.loginGoogle = function(){
+        factoryUser.authWithProvider()
+            .then(result => {
+                let user = result.user.uid;
+                $location.path('/Home');
+                $scope.$apply();
+            })
+            .catch(error => console.log("google login error", error.message, error.code));
+    };
+
+});
+    
