@@ -11,7 +11,7 @@ app.factory("factoryFriends", function($q, $http, $route){
 
 
  const deleteBook = function(id){
-            $http.delete(`https://capstone-2cb7b.firebaseio.com/books/${id}.json`)
+            $http.delete(`https://capstone-2cb7b.firebaseio.com/library/${id}.json`)
             .then((data) =>{
                  $route.reload(); 
             });
@@ -28,7 +28,7 @@ const makeArray = function(Obj) {
 
 
     const getBook = function(id){
-        return $http.get(`https://capstone-2cb7b.firebaseio.com/books.json`)
+        return $http.get(`https://capstone-2cb7b.firebaseio.com/library.json`)
             .then(book => (makeArray(book.data)));
             
       

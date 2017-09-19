@@ -19,6 +19,8 @@ app.controller('controllerFriends', function($scope, factoryFriends, $location, 
     };
 
          $scope.deleteBook = function(id){
+             console.log('is workin');
+             
                 factoryFriends.deleteBook(id);
          };
 

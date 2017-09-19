@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('controllerLibrary', function($scope, factoryLibrary, $location, factoryUser, $routeParams) {
+app.controller('controllerLibrary', function($scope, factoryLibrary, $location, factoryUser, $routeParams, factoryHome) {
         console.log('controllerLibrary has loaded');
 
     $scope.comment = "";
@@ -16,6 +16,22 @@ app.controller('controllerLibrary', function($scope, factoryLibrary, $location, 
              factoryLibrary.addComment(book.id, book);
                 // .then();
     };
+
+    $scope.BookClub = function(object){
+                         console.log('id', object);
+                         
+factoryHome.postBook(object);      
+};
+
+    $scope.BookComment = function(object){
+                         console.log('id', object);
+                         
+factoryHome.postComment(object);    
+
+ }; 
+ // console.log('function ran', submitBook);
+ // console.log('data', $scope.books);
+
 
 
 

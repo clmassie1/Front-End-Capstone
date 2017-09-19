@@ -1,4 +1,3 @@
-<h1>Library</h1>
 
 
 <div ng-repeat="book in books">
@@ -8,7 +7,7 @@
             <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
             <div  class="col-xs-8">{{book.authors}}</div>
             <div id="div2" class="col-xs-8">{{book.description}}</div>
-            <div id="div2" class="col-xs-8">{{book.comment}}</div>
+            <!--<div id="div2" class="col-xs-8">{{book.comment}}</div>-->
             <form class="form-inline" role="form">
            
            
@@ -16,11 +15,19 @@
             
             <div class="form-group">
         <label>Comment</label>
+<div class="comment-box-inner"> 
+    <p>{{book.comment}}</p>  
+ </div>
+
+  
+</div>
+
         <input type="text" class="form-control" placeholder="Comment"  ng-model="comment"/>
     </div>
           
             <div class="text-center">
-        <button class="btn btn-default" ng-click="submitComment(comment, book)">Add Comment</button> 
+        <button class="btn btn-default" ng-click="BookComment(comment, book)">Add Comment</button>
+         <button class="btn btn-default" ng-click="BookClub(book)">Post</button> 
         <button class="btn btn-default" ng-click="deleteBook(book.id)">Remove</button>   
     </div>
         </form>
@@ -45,4 +52,7 @@ body  {
     background-repeat: no-repeat;
     background-attachment: fixed;   
 }
+
+
+
 </style>

@@ -2,7 +2,6 @@
         <input type="text" class="form-control" placeholder="Search Book"ng-model="searchTerm">
       </div>
       <button ng-click="searchBook()" type="submit" class="btn btn-default">Submit</button>
-<h1>books</h1>
 <div  ng-repeat="book in books" >
     <div class="panel panel-default" >
         <div class="panel-body">
@@ -10,8 +9,8 @@
             <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
             <div  class="col-xs-8">{{book.authors}}</div>
             <div id="div2" class="col-xs-8">{{book.description}}</div>
-            <div id="div1" class="col-xs-8"><button ng-click="submitBook(book)">add to library</button></div>
-            <button ng-click="submitBook(book)">Post</button>
+            <div id="div1" class="col-xs-8"><button class="btn btn-default" ng-click="submitBook(book)">add to library</button></div>
+            <button class="btn btn-default" ng-click="BookClub(book)">Post</button>
         </div>
     </div>
 </div>

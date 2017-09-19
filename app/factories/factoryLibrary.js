@@ -12,7 +12,7 @@ app.factory("factoryLibrary", function($q, $http, $routeParams, $route){
 
 const addComment = function(id, obj) {
     let newj = angular.toJson(obj);
-        $http.patch(`https://capstone-2cb7b.firebaseio.com/books/${id}.json`, newj);
+        $http.patch(`https://capstone-2cb7b.firebaseio.com/book/Comment/${id}.json`, newj);
          
         };
     
@@ -36,6 +36,8 @@ const addComment = function(id, obj) {
             
       
     };
+
+    
 // called from partialLibrary.html gets the bookId from $routeParams
 // and passes this to the factory, where an $http.delete removes it from the database
     const deleteBook = function(id){
