@@ -22,11 +22,11 @@
   
 </div>
 
-        <input type="text" class="form-control" placeholder="Comment"  ng-model="comment"/>
+        <input type="text" class="form-control" placeholder="Comment"  ng-model="input"/>
     </div>
           
             <div class="text-center">
-        <button class="btn btn-default" ng-click="BookComment(comment, book)">Add Comment</button>
+        <button class="btn btn-default" ng-click="submitComment(input, book.id)">Add Comment</button>
          <button class="btn btn-default" ng-click="BookClub(book)">Post</button> 
         <button class="btn btn-default" ng-click="deleteBook(book.id)">Remove</button>   
     </div>

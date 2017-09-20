@@ -6,6 +6,9 @@
  
 */
 
+
+
+
 app.factory("factoryFriends", function($q, $http, $route){
     console.log('factoryFriends has loaded');
 

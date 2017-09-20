@@ -8,15 +8,31 @@ app.factory("factoryLibrary", function($q, $http, $routeParams, $route){
     console.log('factoryLibrary has loaded');
 
 
+const addComment = function(input, id) {
+  
+    
+        let newObj =  {
+            comment: input,
+            bookId: id
+       };
 
-
-const addComment = function(id, obj) {
-    let newj = angular.toJson(obj);
-        $http.patch(`https://capstone-2cb7b.firebaseio.com/book/Comment/${id}.json`, newj);
+        angular.toJson(newObj);
+        console.log('obj', newObj);
+          $http.post(`https://capstone-2cb7b.firebaseio.com/comment.json`, newObj);
          
         };
-    
 
+        // const getComment = function(){
+    //    console.log();
+    //    return $http.get(`https://capstone-2cb7b.firebaseio.com/comment.json`)
+    //         .then(book => (makeArray(book.data)));
+            
+      
+    // };
+
+
+    
+ 
  
 // helper function to process the firebase object
 // into an array with it's ugly id assigned as its local id
@@ -37,6 +53,18 @@ const addComment = function(id, obj) {
       
     };
 
+
+    const getComment = function(){
+
+        let comment = [];
+
+        console.log('comment', comment);
+        
+
+        return $http.get(`https://capstone-2cb7b.firebaseio.com/comment.json?orderBy="bookId"`)
+             .then(book => (makeArray(book.data)));
+            
+ };
     
 // called from partialLibrary.html gets the bookId from $routeParams
 // and passes this to the factory, where an $http.delete removes it from the database
@@ -48,5 +76,5 @@ const addComment = function(id, obj) {
               
         };
     
-    return {getBook, deleteBook, addComment};
+    return {getBook, deleteBook, addComment, getComment};
 });

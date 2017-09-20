@@ -1,8 +1,15 @@
 'use strict';
 
-app.controller('controllerFriends', function($scope, factoryFriends, $location, factoryLibrary) {
+app.controller('controllerFriends', function($scope, factoryFriends, $location, factoryLibrary, factoryHome) {
         console.log('controllerFriends has loaded');
 
+
+
+                     $scope.submitBook = function(object){
+                         console.log('id', object);
+                         
+factoryHome.addLibrary(object);   
+};
 
          $scope.comment = "";
 
@@ -17,6 +24,13 @@ app.controller('controllerFriends', function($scope, factoryFriends, $location, 
              factoryLibrary.addComment(book.id, book);
                 // .then();
     };
+
+
+    $scope.BookClub = function(object){
+                         console.log('id', object);
+                         
+factoryHome.addLibrary(object);      
+};
 
          $scope.deleteBook = function(id){
              console.log('is workin');

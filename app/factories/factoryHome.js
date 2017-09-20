@@ -24,7 +24,6 @@ let Url = FBCreds.databaseURL;
                 image: currentBook.volumeInfo.imageLinks.thumbnail,
                 title: currentBook.volumeInfo.title,
                 description: currentBook.volumeInfo.description,
-                Cm: ""
             };
             return book;
         });
@@ -80,6 +79,30 @@ const addBook = function(obj){
             .then(data => data)
             .catch();
     };
+
+
+const addLibrary = function(obj){
+    console.log('obj', obj);
+    
+        let newObj =  {
+          key: obj,  
+          title: obj.title,
+          authors: obj.authors,
+          image: obj.image,
+          id: obj.id,
+          description: obj.description,
+          uid: user
+        };
+          
+
+        JSON.stringify(newObj);
+        console.log('object', newObj);
+        return $http.post(`https://capstone-2cb7b.firebaseio.com/books/.json`, newObj)
+            .then(data => data)
+            .catch();
+    };
+
+
 const postBook = function(obj){
     console.log('obj', obj);
     
@@ -101,17 +124,8 @@ const postBook = function(obj){
             .catch();
     };
 
-    const postComment = function(){
-  
-        JSON.stringify();
-        console.log('object' );
-        return $http.post(`https://capstone-2cb7b.firebaseio.com/Comment/.json`)
-            .then(data => data)
-            .catch();
-    };
 
     
-
     
-    return { getBooks, addBook, buildBookObjs, postBook, postComment};
+    return { getBooks, addBook, buildBookObjs, postBook, addLibrary};
 });
