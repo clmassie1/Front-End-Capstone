@@ -5,29 +5,35 @@
         <div class="panel-body">
             <div class="col-xs-12"><h3>{{ book.title }}</h3><hr> </div>
             <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
-            <div  class="col-xs-8">{{book.authors}}</div>
+            <div class="col-xs-12">Authors</div>
+            <div  class="col-xs-8" ng-repeat=" authors in book.authors"> {{authors}}</div>
             <div id="div2" class="col-xs-8">{{book.description}}</div>
             <!--<div id="div2" class="col-xs-8">{{book.comment}}</div>-->
             <form class="form-inline" role="form">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
            
            
 
             
             <div class="form-group">
-        <label>Comment</label>
-<div class="comment-box-inner"> 
-    <p>{{book.comment}}</p>  
+                <!--<di ng-repeat="book in books">-->
+        <label>Comment</label> 
+        
+<div class="comment-box-inner" ng-repeat=" (key, value) in book.comments">
+            <button class="btn btn-delete" ng-click="deleteComment(value.bookId, key)"> delete</button>
+    <p>{{value.comment}}</p>  
+   
  </div>
-
+<!--</di>-->
   
 </div>
-
+<br><br><br>
         <input type="text" class="form-control" placeholder="Comment"  ng-model="input"/>
     </div>
           
             <div class="text-center">
-        <button class="btn btn-default" ng-click="submitComment(input, book.id)">Add Comment</button>
-         <button class="btn btn-default" ng-click="BookClub(book)">Post</button> 
+        <button class="btn btn-default" ng-click="submitComment(input, book.id, book)">Add Note</button>
+         <!--<button class="btn btn-default" ng-click="BookClub(book)">Post</button> -->
         <button class="btn btn-default" ng-click="deleteBook(book.id)">Remove</button>   
     </div>
         </form>

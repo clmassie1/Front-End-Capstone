@@ -2,18 +2,77 @@
         <input type="text" class="form-control" placeholder="Search Book"ng-model="searchTerm">
       </div>
       <button ng-click="searchBook()" type="submit" class="btn btn-default">Submit</button>
-<div  ng-repeat="book in books" >
-    <div class="panel panel-default" >
+
+
+
+
+<div ng-repeat="book in books">
+    <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12"><h3>{{ book.title }}</h3><hr> </div>
             <div  class="col-xs-12"> <img ng-src="{{book.image}}"></div>
-            <div  class="col-xs-8">{{book.authors}}</div>
+            <div class="col-xs-12">Authors</div>
+            <div  class="col-xs-8" ng-repeat=" authors in book.authors"> {{authors}}</div>
             <div id="div2" class="col-xs-8">{{book.description}}</div>
-            <div id="div1" class="col-xs-8"><button class="btn btn-default" ng-click="submitBook(book)">add to library</button></div>
+            <!--<div id="div2" class="col-xs-8">{{book.comment}}</div>-->
+            <form class="form-inline" role="form">
+           
+           
+
+            
+            <div class="form-group">
+                <!--<di ng-repeat="book in books">-->
+        <label>Comment</label>
+<div class="comment-box-inner" ng-repeat=" (key, value) in book.comments"> 
+<button class="btn btn-delete" ng-click="deleteComment(value.bookId, key)"> delete</button>
+    <p>{{value.comment}}</p>  
+ </div>
+<!--</di>-->
+  
+</div>
+
+        <input type="text" class="form-control" placeholder="Comment"  ng-model="input"/>
+    </div>
+          
+            <div class="text-center">
+        
+          <div width="100" button class="btn btn-default" ng-click="submitBook(book)">add to library</button></div>
             <button class="btn btn-default" ng-click="BookClub(book)">Post</button>
+<a class="btn btn-default" href="{{book.link}}">buy now</a>  
+    </div>
+        </form>
+                    
         </div>
     </div>
 </div>
+
+          
+            
+        </form>
+                    
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<div class="container-fluid">
+<ul>
+
+  <li>
+    <div class="card card-green col-md-12">
+      <p class="card-question">how old was the oldest person ever?</p>
+      <div class="card-separator"></div>
+      <p style="text-align:justify;">The oldest verified person on record was French woman <b>Jeanne Calment</b> (1875–1997), who lived to the age of <b>122 years, 164 days.</b></p>
+      <a href="https://en.wikipedia.org/wiki/List_of_the_verified_oldest_people">View Source</a>
+      <div class="card-separator"></div>
+    </div>
+  </li>-->
+
+
+
           <style>
 body  {
     background-image: url("/app/library.jpg");

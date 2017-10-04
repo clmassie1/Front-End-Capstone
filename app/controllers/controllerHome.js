@@ -8,12 +8,14 @@ app.controller('controllerHome', function($scope, factoryHome, $location) {
                      $scope.submitBook = function(object){
                          console.log('id', object);
                          
-factoryHome.addBook(object);   
+factoryHome.addLibrary(object);   
 };
                     $scope.BookClub = function(object){
                          console.log('id', object);
                          
-factoryHome.postBook(object);        
+factoryHome.postBook(object);  
+// console.log('test', factoryHome.postBook(object));
+      
  // console.log('function ran', submitBook);
  // console.log('data', $scope.books);
 };

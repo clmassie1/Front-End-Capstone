@@ -24,6 +24,7 @@ let Url = FBCreds.databaseURL;
                 image: currentBook.volumeInfo.imageLinks.thumbnail,
                 title: currentBook.volumeInfo.title,
                 description: currentBook.volumeInfo.description,
+                link: currentBook.volumeInfo.canonicalVolumeLink
             };
             return book;
         });
@@ -69,16 +70,28 @@ const addBook = function(obj){
           image: obj.image,
           id: obj.id,
           description: obj.description,
-          uid: user
+          uid: user,
         };
           
 
         JSON.stringify(newObj);
         console.log('object', newObj);
         return $http.post(`https://capstone-2cb7b.firebaseio.com/books/.json`, newObj)
-            .then(data => data)
-            .catch();
-    };
+            .then((data) =>{
+                console.log('data', data);
+      
+
+                let newObj = {
+                    name: data.data.name,
+                 
+                };
+
+            newObj = angular.toJson(newObj);
+        console.log('commentId', newObj);
+          $http.patch(`https://capstone-2cb7b.firebaseio.com/books/${data.data.name}.json`, newObj);
+
+            });
+};
 
 
 const addLibrary = function(obj){
@@ -92,15 +105,28 @@ const addLibrary = function(obj){
           id: obj.id,
           description: obj.description,
           uid: user
+          
         };
           
 
         JSON.stringify(newObj);
         console.log('object', newObj);
-        return $http.post(`https://capstone-2cb7b.firebaseio.com/books/.json`, newObj)
-            .then(data => data)
-            .catch();
-    };
+        return $http.post(`https://capstone-2cb7b.firebaseio.com/library/.json`, newObj)
+            .then((data) =>{
+                console.log('data', data);
+      
+
+                let newObj = {
+                    name: data.data.name,
+                 
+                };
+
+            newObj = angular.toJson(newObj);
+        console.log('commentId', newObj);
+          $http.patch(`https://capstone-2cb7b.firebaseio.com/library/${data.data.name}.json`, newObj);
+
+            });
+};
 
 
 const postBook = function(obj){
@@ -119,7 +145,7 @@ const postBook = function(obj){
 
         JSON.stringify(newObj);
         console.log('object', newObj);
-        return $http.post(`https://capstone-2cb7b.firebaseio.com/library/.json`, newObj)
+        return $http.post(`https://capstone-2cb7b.firebaseio.com/books/.json`, newObj)
             .then(data => data)
             .catch();
     };

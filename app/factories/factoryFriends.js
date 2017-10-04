@@ -13,13 +13,75 @@ app.factory("factoryFriends", function($q, $http, $route){
     console.log('factoryFriends has loaded');
 
 
- const deleteBook = function(id){
-            $http.delete(`https://capstone-2cb7b.firebaseio.com/library/${id}.json`)
+const getComment = function(input, id, book) {
+  console.log('please god' );
+  
+    
+        let newObj =  {
+            comment: input,
+            bookId: id,
+            // commentId: book
+            // name: .data.data.name
+            
+       };
+return $q((resolve, reject) =>{
+        angular.toJson(newObj);
+        console.log('obj', newObj);
+        //replace id with new var
+          $http.post(`https://capstone-2cb7b.firebaseio.com/books/${id}/comments.json`, newObj)
             .then((data) =>{
-                 $route.reload(); 
+                console.log('data to find comment id', data);
+                
+                
+
+      
+
+                let newObj = {
+                    name: data.data.name,
+                    // comment: data.config.data.comment,
+                    // bookId: data.config.data.bookId,
+                    // commentId: data.config.data.commentId
+                 
+                };
+
+            // newObj = angular.toJson(newObj);
+        console.log('commentId', newObj);
+
+          $http.post(`https://capstone-2cb7b.firebaseio.com/books/${id}/${data.data.name}.json`, newObj);
+          console.log('test', newObj);
+              resolve();
+            //  $route.reload(); 
+            });
+  });  
+};
+
+
+
+
+const delComment = function(bookId, key){
+    return $q((resolve, reject) =>{
+    $http.delete(`https://capstone-2cb7b.firebaseio.com/books/${bookId}/comments/${key}.json`)
+    .then((data) =>{
+                 resolve();
+                //  $route.reload(); 
             });
               
-        };
+        });
+};
+
+
+
+ const deleteBook = function(id){
+         return $q((resolve, reject) =>{
+            $http.delete(`https://capstone-2cb7b.firebaseio.com/books/${id}.json`)
+            .then((data) =>{
+                 resolve();
+                //  $route.reload(); 
+            });
+              
+        });
+};
+
 
 
 const makeArray = function(Obj) {
@@ -31,11 +93,11 @@ const makeArray = function(Obj) {
 
 
     const getBook = function(id){
-        return $http.get(`https://capstone-2cb7b.firebaseio.com/library.json`)
+        return $http.get(`https://capstone-2cb7b.firebaseio.com/books.json`)
             .then(book => (makeArray(book.data)));
             
       
 
     };
-      return {getBook, deleteBook};
+      return {getBook, deleteBook, getComment, delComment};
 });
